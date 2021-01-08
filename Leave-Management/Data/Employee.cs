@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Leave_Management.Data
 {
     public class Employee : IdentityUser
@@ -20,6 +21,9 @@ namespace Leave_Management.Data
         public string TaxId { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime DateJoined { get; set; }
+
+        public ICollection<LeaveAllocation> LeaveAllocations { get; set; }
+
 
     }
 }

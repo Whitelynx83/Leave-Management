@@ -15,6 +15,9 @@ namespace Leave_Management.Data
         [Required]
         [Column(TypeName = "varchar(50)")]
         public string Name { get; set; } 
+
+        public int DefaultDays { get; set; }
+
         public DateTime DateCreated { get; set; }
 
     }

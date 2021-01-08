@@ -46,7 +46,7 @@ namespace Leave_Management
 
 
             // Activate or deactivate the Email confirmation when Registragion
-            services.AddDefaultIdentity<IdentityUser>() //(options =>  options.SignIn.RequireConfirmedAccount = true )
+            services.AddDefaultIdentity<Employee>() //(options =>  options.SignIn.RequireConfirmedAccount = true )
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -58,7 +58,7 @@ namespace Leave_Management
         public void Configure(
             IApplicationBuilder app,
             IWebHostEnvironment env,
-            UserManager<IdentityUser> userManager,
+            UserManager<Employee> userManager,
             RoleManager<IdentityRole> roleManager
             )
         {
