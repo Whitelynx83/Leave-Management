@@ -1,0 +1,103 @@
+﻿@model MyLeaveVM
+
+@{
+    ViewData["Title"] = "MyLeave";
+}
+
+<h1>My Leave</h1>
+
+<h2>Leave Allocations</h2>
+<div class="jumbotron">
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            @{
+
+                foreach (var item in Model.LeaveAllocations)
+                {
+                    <li class="list-group-item">
+                        <h6>
+                            @item.LeaveType.Name<span class="badge badge-secondary">@item.NumberOfDays</span>
+                        </h6>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+
+<table id="tblData" class="table">
+<thead>
+    <tr>
+        <th>
+            Employee Name
+        </th>
+        <th>
+            Start Date
+        </th>
+        <th>
+            End Date
+        </th>
+        <th>
+            Leave Type
+        </th>
+        <th>
+            Date Requested
+        </th>
+        <th>
+            Approval Status
+        </th>
+        <th>
+            Cancel Request
+        </th>
+
+        <th></th>
+    </tr>
+</thead
+>
+<tbody>
+    @foreach (var item in Model.LeaveRequests)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestingEmployee.Firstname) @Html.DisplayFor(modelItem => item.RequestingEmployee.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaveType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateRequested)
+            </td>
+            <td>
+                @switch (item.Approved)
+                {
+                    case true:
+                        <span class="badge badge-success">Approved</span>
+                        break;
+                    case false:
+                        <span class="badge badge-danger">Rejected</span>
+                        break;
+                    default:
+                        <span class="badge badge-warning">Pending</span>
+                        break;
+                }
+
+            </td>
+            <td>
+                @if (DateTime.Now < item.StartDate && !(item.Approved == false))
+                {
+                    <a class="btn btn-danger" asp-action="CancelRequest" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to cancel ?')">
+                        <i class="fa fa-trash" aria-hidden="true"></i> Cancel Request
+                    </a>
+                }
+
+            </td>
+        </tr>
+    }
+</tbody>
+</table>

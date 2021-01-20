@@ -62,11 +62,19 @@ namespace Leave_Management.Repository
             return leaveallocation;
         }
 
-        public ICollection<LeaveAllocation> GetLeaveAllocationsByEmployee(string id)
+        public ICollection<LeaveAllocation> GetLeaveAllocationsByEmployee(string Employeeid)
         {
             return Findall()
-                .Where(q => q.EmployeeId == id && q.Period == DateTime.Now.Year)
+                .Where(q => q.EmployeeId == Employeeid && q.Period == DateTime.Now.Year)
                 .ToList();
+        }
+
+        public LeaveAllocation GetLeaveAllocationsByEmployeeAndType(string Employeeid, int LeaveTypeID)
+        {
+            return Findall()
+                .Where(q => q.EmployeeId == Employeeid
+                && q.LeaveTypeId == LeaveTypeID
+                && q.Period == DateTime.Now.Year).FirstOrDefault();
         }
 
         public bool isExists(int id)

@@ -13,6 +13,9 @@ namespace Leave_Management.Models
 
         public int NumberOfDays { get; set; }
 
+        //public LeaveRequestVM LeaveRequests
+        //public int NumberOfDaysTaken { get; set; }
+
         public DateTime DateCreated { get; set; }
 
         public int Period { get; set; }

@@ -16,12 +16,11 @@ namespace Leave_Management.Mappings
 
             CreateMap<Employee, EmployeeVM>().ReverseMap();
 
-            // TEst with JF
+            // Test with JF
             CreateMap<Employee, ViewAllocationsVM>()
-                .ForMember(q => q.EmployeeId, q => q.MapFrom(x => x.Id))
-                .ForMember(q => q.Employee, q => q.MapFrom(x => x))
-                .ForMember(q => q.LeaveAllocations, q => q.MapFrom(x => x.LeaveAllocations));
-
+                .ForMember(VM => VM.EmployeeId, q => q.MapFrom(E => E.Id))
+                .ForMember(VM => VM.Employee, q => q.MapFrom(x => x));
+                //.ForMember(VM => VM.LeaveAllocations, q => q.MapFrom(E => E.LeaveAllocations));
 
 
             CreateMap<LeaveAllocation, LeaveAllocationVM>().ReverseMap();
@@ -31,7 +30,7 @@ namespace Leave_Management.Mappings
              Why didn't I have to map CreateLeaveAllocationVM and ViewAllocationsVM ???????????????????????????
              */
 
-            CreateMap<LeaveHistory, LeaveHistoryVM>().ReverseMap();
+            CreateMap<LeaveRequest, LeaveRequestVM>().ReverseMap();
         }
     }
 }
